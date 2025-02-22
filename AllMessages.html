@@ -13,8 +13,8 @@
   <div id="all-messages-container">
     <div id="all-messages"></div>
     <div id="input-bar">
-      <input type="text" id="name-input" placeholder="Your name...">
-      <input type="text" id="message-input" placeholder="Type your message...">
+      <input type="text" id="name-input" placeholder="Your name..."/>
+      <input type="text" id="message-input" placeholder="Type your message..."/>
       <button id="send-button">❤️</button>
     </div>
   </div>
@@ -27,7 +27,6 @@
       const sendButton = document.getElementById('send-button');
 
       function displayAllMessages() {
-        messages = JSON.parse(localStorage.getItem('messages')) || [];
         allMessagesDiv.innerHTML = '';
         messages.forEach(message => {
           const messageDiv = document.createElement('div');
@@ -64,6 +63,7 @@
         }
       });
 
+      // Event listener to detect changes in localStorage
       window.addEventListener('storage', function(e) {
         if (e.key === 'messagesUpdated') {
           messages = JSON.parse(localStorage.getItem('messages')) || [];
@@ -71,6 +71,7 @@
         }
       });
 
+      // Initial display
       displayAllMessages();
     });
   </script>
