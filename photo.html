@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Photo Upload</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Upload Photos or Videos</h1>
+  <div id="photo-options">
+    <button id="take-photo">Take Photo/Video</button>
+    <input type="file" id="file-input" style="display:none" capture="environment" accept="image/*,video/*">
+    <button id="upload-photo">Upload Photo/Video</button>
+    <input type="file" id="upload-file-input" style="display:none" accept="image/*,video/*">
+    <button id="view-gallery">Go to Gallery</button>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('take-photo').onclick = function () {
+        document.getElementById('file-input').click();
+      };
+
+      document.getElementById('upload-photo').onclick = function () {
+        document.getElementById('upload-file-input').click();
+      };
+
+      document.getElementById('view-gallery').onclick = function () {
+        window.location.href = 'gallery.html';
+      };
+
+      document.getElementById('upload-file-input').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            let galleryPhotos = JSON.parse(localStorage.getItem('galleryPhotos')) || [];
+            galleryPhotos.push(e.target.result);
+            localStorage.setItem('galleryPhotos', JSON.stringify(galleryPhotos));
+            window.location.href = 'gallery.html';
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
