@@ -1,0 +1,265 @@
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+
+h1 {
+  display: flex;
+  flex-direction: column;
+  font-family: "Great Vibes", cursive;
+  font-size: 3em;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+  color: white; /* Change font color to white */
+}
+
+#countdown {
+  font-size: 3em;
+  color: black;
+  font-weight: bold;
+  margin: 20px 0;
+  text-align: center;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(to bottom, navy, lightblue);
+  position: relative;
+}
+
+#top-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.messages-button,
+.gallery-button,
+.home-button {
+  padding: 10px 20px;
+  background-color: navy;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.messages-button {
+  top: 10px;
+  left: -190px; /* Moved 200px further to the left */
+}
+
+.gallery-button {
+  top: 50px; /* Position it below the Messages button */
+  left: -190px; /* Moved 200px further to the left */
+}
+
+.wedding-image {
+  max-width: 100%;
+  height: auto;
+}
+
+#chat-room,
+#all-messages-container {
+  width: 100%;
+  max-width: 800px; /* Increased max-width */
+  background-color: white; /* Removed background color for all-messages-container */
+  border-top: 1px solid #CCC;
+  margin-top: 30px; /* Added more margin */
+  display: flex;
+  flex-direction: column;
+  padding: 30px; /* Increased padding */
+  box-sizing: border-box;
+}
+
+#chat-welcome {
+  text-align: center;
+}
+
+#messages,
+#all-messages {
+  flex: 1;
+  max-height: 400px; /* Increased max-height */
+  overflow-y: auto;
+}
+
+#input-bar {
+  display: flex;
+  flex-direction: row;
+}
+
+#name-input,
+#message-input {
+  flex: 1;
+  padding: 15px; /* Increased padding */
+  font-size: 1.2em; /* Slightly increased font size */
+  border: 1px solid #CCC;
+  border-radius: 5px;
+  margin-right: 10px; /* Increased margin */
+}
+
+#send-button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.view-all {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.view-all a {
+  text-decoration: none;
+  color: navy;
+  font-weight: bold;
+}
+
+.reset-link {
+  text-align: center;
+  margin-top: 20px; /* Increased margin */
+}
+
+.reset-link button {
+  background-color: #f44336; /* Red color */
+  color: white;
+  border: none;
+  padding: 15px 30px; /* Increased padding */
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reset-link button:hover {
+  background-color: #d32f2f;
+}
+
+/* Styles for all-messages.html */
+#nav-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0; /* Added margin for spacing */
+}
+
+#home-button-container {
+  text-align: center;
+}
+
+#all-messages-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px; /* Increased max-width */
+  background-color: transparent; /* Make background transparent */
+  padding: 30px; /* Increased padding */
+}
+
+#all-messages {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px; /* Increased padding */
+}
+
+.message-box {
+  font-family: "Cursive", sans-serif;
+  margin: 20px 0; /* Increased margin */
+  padding: 20px; /* Increase padding */
+  background-color: #F1F0F0;
+  border-radius: 10px;
+  width: calc(100% - 40px); /* Increased width */
+  max-width: 90%;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.message-name {
+  font-weight: bold;
+  font-size: 1.2em; /* Increased font size */
+}
+
+.message-time {
+  font-size: 1em;
+  color: gray;
+}
+
+.message-text {
+  margin-top: 10px; /* Increased margin */
+}
+
+.camera-link img {
+  width: 50px;
+  height: 50px;
+  margin-top: 10px;
+}
+
+/* Gallery styles */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.gallery-photo {
+  max-width: 150px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.gallery-photo:hover {
+  transform: scale(1.1);
+}
+
+/* Lightbox styles */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 80%;
+}
+
+.lightbox .close, .lightbox .prev, .lightbox .next {
+  cursor: pointer;
+  color: white;
+  font-size: 2em;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  user-select: none;
+}
+
+.lightbox .close {
+  top: 20px;
+  right: 30px;
+}
+
+.lightbox .prev {
+  left: 20px;
+}
+
+.lightbox .next {
+  right: 20px;
+}
