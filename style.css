@@ -57,6 +57,11 @@ body {
   margin-right: 8px; /* Add margin to separate text and icon */
 }
 
+.camera-button {
+  border-radius: 50%; /* Round the edges */
+  padding: 10px; /* Increase padding */
+}
+
 .wedding-image {
   max-width: 100%;
   height: auto;
@@ -117,6 +122,24 @@ body {
   text-decoration: none;
   color: navy;
   font-weight: bold;
+}
+
+.reset-link {
+  text-align: center;
+  margin-top: 20px; /* Increased margin */
+}
+
+.reset-link button {
+  background-color: #f44336; /* Red color */
+  color: white;
+  border: none;
+  padding: 15px 30px; /* Increased padding */
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reset-link button:hover {
+  background-color: #d32f2f;
 }
 
 /* Styles for all-messages.html */
