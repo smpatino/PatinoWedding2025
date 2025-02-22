@@ -39,7 +39,7 @@ body {
 
 .messages-button,
 .gallery-button,
-.home-button {
+.camera-button {
   padding: 10px 20px;
   background-color: navy;
   color: white;
@@ -47,16 +47,14 @@ body {
   border-radius: 5px;
   font-weight: bold;
   margin: 5px;
+  display: flex;
+  align-items: center; /* Align items vertically centered */
 }
 
-.messages-button {
-  top: 10px;
-  left: -190px; /* Moved 200px further to the left */
-}
-
-.gallery-button {
-  top: 50px; /* Position it below the Messages button */
-  left: -190px; /* Moved 200px further to the left */
+.camera-icon {
+  width: 24px; /* Set icon width */
+  height: 24px; /* Set icon height */
+  margin-right: 8px; /* Add margin to separate text and icon */
 }
 
 .wedding-image {
@@ -121,6 +119,67 @@ body {
   font-weight: bold;
 }
 
+/* Styles for all-messages.html */
+#nav-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0; /* Added margin for spacing */
+}
+
+#home-button-container {
+  text-align: center;
+}
+
+#all-messages-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px; /* Increased max-width */
+  background-color: transparent; /* Make background transparent */
+  padding: 30px; /* Increased padding */
+}
+
+#all-messages {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px; /* Increased padding */
+}
+
+.message-box {
+  font-family: "Cursive", sans-serif;
+  margin: 20px 0; /* Increased margin */
+  padding: 20px; /* Increase padding */
+  background-color: #F1F0F0;
+  border-radius: 10px;
+  width: calc(100% - 40px); /* Increased width */
+  max-width: 90%;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.message-name {
+  font-weight: bold;
+  font-size: 1.2em; /* Increased font size */
+}
+
+.message-time {
+  font-size: 1em;
+  color: gray;
+}
+
+.message-text {
+  margin-top: 10px; /* Increased margin */
+}
+
 .camera-link img {
   width: 50px;
   height: 50px;
@@ -181,6 +240,6 @@ body {
   left: 20px;
 }
 
-lightbox .next {
+.lightbox .next {
   right: 20px;
 }
