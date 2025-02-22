@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gallery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Gallery</h1>
+  <div id="gallery" class="gallery"></div>
+  
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" src="">
+    <a class="prev">&lsaquo;</a>
+    <a class="next">&rsaquo;</a>
+  </div>
+
+  <script>
+    const galleryDiv = document.getElementById('gallery');
+    let galleryPhotos = JSON.parse(localStorage.getItem('galleryPhotos')) || [];
+
+    function displayGallery() {
+      galleryDiv.innerHTML = '';
+      galleryPhotos.forEach((src, index) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.className = 'gallery-photo';
+        img.dataset.index = index;
+        galleryDiv.appendChild(img);
+      });
+    }
+
+    displayGallery();
+    
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const close = document.querySelector('.lightbox .close');
+    const prev = document.querySelector('.lightbox .prev');
+    const next = document.querySelector('.lightbox .next');
+
+    function openLightbox(index) {
+      lightboxImg.src = galleryPhotos[index];
+      lightbox.style.display = 'flex';
+      lightboxImg.dataset.index = index;
+    }
+
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+    }
+
+    function changeImage(step) {
+      let index = (parseInt(lightboxImg.dataset.index) + step + galleryPhotos.length) % galleryPhotos.length;
+      lightboxImg.src = galleryPhotos[index];
+      lightboxImg.dataset.index = index;
+    }
+
+    document.querySelectorAll('.gallery-photo').forEach(photo => {
+      photo.addEventListener('click', () => {
+        openLightbox(photo.dataset.index);
+      });
+    });
+
+    close.addEventListener('click', closeLightbox);
+    prev.addEventListener('click', () => changeImage(-1));
+    next.addEventListener('click', () => changeImage(1));
+
+    lightbox.addEventListener('click', event => {
+      if (event.target === lightbox || event.target === close) {
+        closeLightbox();
+      }
+    });
+  </script>
+</body>
+</html>
