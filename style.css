@@ -39,7 +39,7 @@ body {
 
 .messages-button,
 .gallery-button,
-.camera-button {
+.home-button {
   padding: 10px 20px;
   background-color: navy;
   color: white;
@@ -47,19 +47,6 @@ body {
   border-radius: 5px;
   font-weight: bold;
   margin: 5px;
-  display: flex;
-  align-items: center; /* Align items vertically centered */
-}
-
-.camera-icon {
-  width: 24px; /* Set icon width */
-  height: 24px; /* Set icon height */
-  margin-right: 8px; /* Add margin to separate text and icon */
-}
-
-.camera-button {
-  border-radius: 50%; /* Round the edges */
-  padding: 10px; /* Increase padding */
 }
 
 .wedding-image {
@@ -71,7 +58,7 @@ body {
 #all-messages-container {
   width: 100%;
   max-width: 800px; /* Increased max-width */
-  background-color: white; /* Removed background color for all-messages-container */
+  background-color: white;
   border-top: 1px solid #CCC;
   margin-top: 30px; /* Added more margin */
   display: flex;
@@ -142,15 +129,10 @@ body {
   background-color: #d32f2f;
 }
 
-/* Styles for all-messages.html */
-#nav-buttons {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0; /* Added margin for spacing */
-}
-
-#home-button-container {
-  text-align: center;
+.camera-link img {
+  width: 50px;
+  height: 50px;
+  margin-top: 10px;
 }
 
 #all-messages-container {
@@ -159,25 +141,25 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 800px; /* Increased max-width */
-  background-color: transparent; /* Make background transparent */
-  padding: 30px; /* Increased padding */
+  max-width: 800px;
+  background-color: white;
+  border-top: 1px solid #CCC;
+  padding: 30px;
 }
 
 #all-messages {
   width: 100%;
   box-sizing: border-box;
-  padding: 20px; /* Increased padding */
+  padding: 20px;
 }
 
 .message-box {
   font-family: "Cursive", sans-serif;
-  margin: 20px 0; /* Increased margin */
-  padding: 20px; /* Increase padding */
+  margin: 20px 0;
+  padding: 20px;
   background-color: #F1F0F0;
   border-radius: 10px;
-  width: calc(100% - 40px); /* Increased width */
-  max-width: 90%;
+  width: 100%;
   word-wrap: break-word;
   display: flex;
   flex-direction: column;
@@ -191,7 +173,7 @@ body {
 
 .message-name {
   font-weight: bold;
-  font-size: 1.2em; /* Increased font size */
+  font-size: 1.2em;
 }
 
 .message-time {
@@ -200,69 +182,5 @@ body {
 }
 
 .message-text {
-  margin-top: 10px; /* Increased margin */
-}
-
-.camera-link img {
-  width: 50px;
-  height: 50px;
   margin-top: 10px;
-}
-
-/* Gallery styles */
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.gallery-photo {
-  max-width: 150px;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.gallery-photo:hover {
-  transform: scale(1.1);
-}
-
-/* Lightbox styles */
-.lightbox {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  justify-content: center;
-  align-items: center;
-}
-
-.lightbox-content {
-  max-width: 90%;
-  max-height: 80%;
-}
-
-.lightbox .close, .lightbox .prev, .lightbox .next {
-  cursor: pointer;
-  color: white;
-  font-size: 2em;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  user-select: none;
-}
-
-.lightbox .close {
-  top: 20px;
-  right: 30px;
-}
-
-.lightbox .prev {
-  left: 20px;
-}
-
-.lightbox .next {
-  right: 20px;
 }
