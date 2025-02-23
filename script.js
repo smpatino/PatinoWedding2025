@@ -73,4 +73,5 @@ window.addEventListener('storage', function (e) {
   }
 });
 
-displayMessages();
+// Initial call to display messages
+document.addEventListener('DOMContentLoaded', displayMessages);
