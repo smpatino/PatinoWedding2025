@@ -1,23 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
-
-h1 {
-  display: flex;
-  flex-direction: column;
-  font-family: "Great Vibes", cursive;
-  font-size: 3em;
-  text-align: center;
-  padding: 20px;
-  margin: 0;
-  color: white;
-}
-
-#countdown {
-  font-size: 3em;
-  color: black;
-  font-weight: bold;
-  margin: 20px 0;
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap');
 
 body {
   display: flex;
@@ -26,8 +7,27 @@ body {
   justify-content: flex-start;
   height: 100vh;
   margin: 0;
-  background: linear-gradient(to bottom, navy, lightblue);
-  position: relative;
+  background: linear-gradient(to bottom, #001f3f, #001f3f80);
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+}
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3em;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+  color: white;
+}
+
+#countdown {
+  font-size: 2em;
+  color: white;
+  font-weight: bold;
+  margin: 20px 0;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 #top-content {
@@ -35,48 +35,57 @@ body {
   flex-direction: column;
   align-items: center;
   position: relative;
+  margin-top: 30px;
 }
 
 #top-content a {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   text-decoration: none;
   padding: 10px 20px;
-  background-color: navy;
+  background-color: #007aff;
   color: white;
   border-radius: 5px;
-  font-weight: bold;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
   margin: 5px;
+}
+
+#top-content a:hover {
+  background-color: #005bbf;
 }
 
 .camera-link img {
   height: 24px;
   width: 24px;
-  margin-left: 10px;
 }
 
 .wedding-image {
-  max-width: 100%;
+  max-width: 90%;
   height: auto;
+  margin: 20px 0;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 #chat-room {
-  width: 100%;
+  width: 90%;
   max-width: 600px;
-  background-color: white;
-  border-top: 1px solid #CCC;
+  background-color: #fff;
+  border: 1px solid #CCC;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
-  /* Increase height for larger display */
-  height: 80vh;
-  padding: 10px;
-  box-sizing: border-box;
+  height: 70vh;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 #chat-welcome {
   text-align: center;
-  font-size: 1em;
+  font-size: 1.2em;
   font-weight: bold;
   padding: 5px;
   background: #007aff;
@@ -87,13 +96,13 @@ body {
 
 #messages {
   flex: 1;
-  /* Adjusting height to take more space */
   overflow-y: auto;
   display: flex;
   flex-direction: column-reverse;
   border: 1px solid #CCC;
   border-radius: 10px;
   padding: 10px;
+  background: #f9f9f9;
 }
 
 .message-box {
@@ -104,7 +113,6 @@ body {
   padding: 10px 20px;
   margin: 10px 0;
   color: black;
-  position: relative;
   word-wrap: break-word;
 }
 
@@ -134,6 +142,7 @@ body {
 #input-bar {
   display: flex;
   flex-direction: row;
+  gap: 10px;
 }
 
 #name-input,
@@ -143,32 +152,45 @@ body {
   font-size: 1em;
   border: 1px solid #CCC;
   border-radius: 5px;
-  margin-right: 5px;
 }
 
 #send-button {
-  background-color: transparent;
+  background-color: #007aff;
   border: none;
+  color: white;
+  padding: 10px 20px;
   font-size: 1.5em;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
+#send-button:hover {
+  background-color: #005bbf;
+}
+
+/* Gallery styles */
 #gallery {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  justify-content: center;
 }
 
 .gallery-photo {
   max-width: 150px;
+  max-height: 100px;
   cursor: pointer;
   transition: transform 0.2s;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .gallery-photo:hover {
   transform: scale(1.1);
 }
 
+/* Lightbox styles */
 .lightbox {
   display: none;
   position: fixed;
@@ -184,6 +206,7 @@ body {
 .lightbox-content {
   max-width: 90%;
   max-height: 80%;
+  border-radius: 10px;
 }
 
 .lightbox .close,
@@ -193,30 +216,32 @@ body {
   color: white;
   font-size: 2em;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   user-select: none;
 }
 
-lightbox .close {
+.lightbox .close {
   top: 20px;
   right: 30px;
 }
 
 .lightbox .prev {
   left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-lightbox .next {
+.lightbox .next {
   right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* Media queries for responsiveness */
-
 @media (max-width: 600px) {
   #chat-room {
-    width: 90vw;  /* Adjust width for small screens */
-    height: 60vh; /* Adjust height for small screens */
+    width: 90vw;
+    height: 60vh;
+    padding: 15px;
   }
 
   #top-content a {
@@ -238,7 +263,6 @@ lightbox .next {
 
   #name-input, #message-input {
     font-size: 0.9em;
-    margin-right: 0;
     margin-bottom: 5px;
   }
 
