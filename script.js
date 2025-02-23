@@ -55,7 +55,7 @@ function sendMessage() {
     messageInput.value = '';
     displayMessages();
     // Trigger storage event manually to sync across devices/tabs
-    window.localStorage.setItem('messagesUpdated', Date.now());
+    localStorage.setItem('messagesUpdated', Date.now());
   }
 }
 
