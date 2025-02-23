@@ -61,14 +61,14 @@ body {
 }
 
 #chat-room {
-  width: 100%;
-  max-width: 600px;
+  width: 90vw;  /* Consistent width across devices */
+  height: 70vh;  /* Consistent height across devices */
+  max-width: 600px;  /* Maximum width for larger screens */
   background-color: white;
   border-top: 1px solid #CCC;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
-  height: 70vh;
   padding: 10px;
   box-sizing: border-box;
 }
@@ -86,7 +86,6 @@ body {
 
 #messages {
   flex: 1;
-  height: 100%;
   overflow-y: auto;
   display: flex;
   flex-direction: column-reverse;
