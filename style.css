@@ -61,14 +61,15 @@ body {
 }
 
 #chat-room {
-  width: 90vw;  /* Consistent width across devices */
-  height: 70vh;  /* Consistent height across devices */
-  max-width: 600px;  /* Maximum width for larger screens */
+  width: 100%;
+  max-width: 600px;
   background-color: white;
   border-top: 1px solid #CCC;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
+  /* Increase height for larger display */
+  height: 80vh;
   padding: 10px;
   box-sizing: border-box;
 }
@@ -86,7 +87,7 @@ body {
 
 #messages {
   flex: 1;
-  height: calc(100% - 100px); /* Adjust height for the fixed elements */
+  /* Adjusting height to take more space */
   overflow-y: auto;
   display: flex;
   flex-direction: column-reverse;
@@ -197,7 +198,7 @@ body {
   user-select: none;
 }
 
-.lightbox .close {
+lightbox .close {
   top: 20px;
   right: 30px;
 }
@@ -206,7 +207,7 @@ body {
   left: 20px;
 }
 
-.lightbox .next {
+lightbox .next {
   right: 20px;
 }
 
