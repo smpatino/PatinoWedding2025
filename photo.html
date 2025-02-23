@@ -11,34 +11,70 @@
     <input type="file" id="file-input" style="display:none" capture="environment" accept="image/*,video/*">
     <button id="upload-photo">Upload Photo/Video</button>
     <input type="file" id="upload-file-input" style="display:none" accept="image/*,video/*">
+    <div id="preview-container" style="display:none">
+      <img id="preview-image" alt="Photo Preview" style="max-width: 100%; height: auto; display: block; margin-top: 20px;">
+      <button id="submit-photo">Submit</button>
+      <button id="retake-photo">Retake</button>
+    </div>
     <button id="view-gallery">Go to Gallery</button>
   </div>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      
+      const fileInput = document.getElementById('file-input');
+      const uploadFileInput = document.getElementById('upload-file-input');
+      const previewContainer = document.getElementById('preview-container');
+      const previewImage = document.getElementById('preview-image');
+      const submitPhotoButton = document.getElementById('submit-photo');
+      const retakePhotoButton = document.getElementById('retake-photo');
+
       document.getElementById('take-photo').onclick = function () {
-        document.getElementById('file-input').click();
+        fileInput.click();
       };
 
       document.getElementById('upload-photo').onclick = function () {
-        document.getElementById('upload-file-input').click();
+        uploadFileInput.click();
       };
 
       document.getElementById('view-gallery').onclick = function () {
         window.location.href = 'gallery.html';
       };
 
-      document.getElementById('upload-file-input').addEventListener('change', function (event) {
+      function handleFileSelect(event) {
         const file = event.target.files[0];
-
         if (file) {
           const reader = new FileReader();
           reader.onload = function (e) {
-            let galleryPhotos = JSON.parse(localStorage.getItem('galleryPhotos')) || [];
-            galleryPhotos.push(e.target.result);
-            localStorage.setItem('galleryPhotos', JSON.stringify(galleryPhotos));
-            window.location.href = 'gallery.html';
+            previewImage.src = e.target.result;
+            previewContainer.style.display = 'block';
           };
           reader.readAsDataURL(file);
+        }
+      }
+      
+      fileInput.addEventListener('change', handleFileSelect);
+      uploadFileInput.addEventListener('change', handleFileSelect);
+
+      retakePhotoButton.addEventListener('click', () => {
+        previewContainer.style.display = 'none';
+        fileInput.value = '';
+        uploadFileInput.value = '';
+      });
+
+      submitPhotoButton.addEventListener('click', () => {
+        const reader = new FileReader();
+        reader.onloadend = function () {
+          let galleryPhotos = JSON.parse(localStorage.getItem('galleryPhotos')) || [];
+          galleryPhotos.push(previewImage.src);
+          localStorage.setItem('galleryPhotos', JSON.stringify(galleryPhotos));
+          window.location.href = 'gallery.html';
+        };
+        reader.readAsDataURL(fileInput.files[0] || uploadFileInput.files[0]);
+      });
+    });
+  </script>
+</body>
+</html>
         }
       });
     });
