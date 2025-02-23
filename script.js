@@ -29,7 +29,7 @@ function displayMessages() {
   messages.forEach((message) => {
     const messageDiv = document.createElement('div');
     messageDiv.className = 'message-box';
-    if (message.name.toLowerCase() === "you") {
+    if (message.name.toLowerCase() === nameInput.value.trim().toLowerCase()) {
       messageDiv.classList.add('sent');
     }
     messageDiv.innerHTML = `
@@ -41,7 +41,8 @@ function displayMessages() {
     `;
     messagesDiv.appendChild(messageDiv);
   });
-  messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the bottom
+  // Auto-scroll to the bottom
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
 function sendMessage() {
@@ -51,7 +52,6 @@ function sendMessage() {
     const now = new Date();
     messages.push({ name, message, time: now });
     localStorage.setItem('messages', JSON.stringify(messages));
-    nameInput.value = '';
     messageInput.value = '';
     displayMessages();
     // Trigger storage event manually to sync across devices/tabs
