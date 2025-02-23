@@ -43,6 +43,7 @@ function displayMessages() {
   });
   // Auto-scroll to the bottom
   messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  console.log("Messages displayed: ", messages);
 }
 
 function sendMessage() {
@@ -56,6 +57,7 @@ function sendMessage() {
     displayMessages();
     // Trigger storage event manually to sync across devices/tabs
     localStorage.setItem('messagesUpdated', Date.now());
+    console.log("Message sent: ", { name, message, time: now });
   }
 }
 
@@ -72,6 +74,7 @@ window.addEventListener('storage', function (e) {
   if (e.key === 'messages' || e.key === 'messagesUpdated') {
     messages = JSON.parse(localStorage.getItem('messages')) || [];
     displayMessages();
+    console.log("Messages updated from storage event: ", messages);
   }
 });
 
