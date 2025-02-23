@@ -30,7 +30,7 @@ function displayMessages() {
   messages.forEach(message => {
     const messageDiv = document.createElement('div');
     messageDiv.className = 'message-box';
-    messageDiv.classList.add(message.name.toLowerCase() === "you" ? "sent" : "received");
+    messageDiv.classList.add(message.name.toLowerCase() === "you" ? "sent" : "");
     messageDiv.innerHTML = `
       <div class="message-info">
         <span class="message-name">${message.name}</span>
@@ -40,6 +40,7 @@ function displayMessages() {
     `;
     messagesDiv.appendChild(messageDiv);
   });
+  messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the bottom
 }
 
 function sendMessage() {
@@ -65,22 +66,15 @@ messageInput.addEventListener('keypress', (event) => {
   }
 });
 
-resetButton.addEventListener('click', () => {
-  localStorage.removeItem('messages');
-  messages = [];
-  displayMessages();
-  localStorage.setItem('messagesUpdated', Date.now());
-});
-
-displayMessages();
-
-// Event listener to detect changes in localStorage
+// Event listener to detect changes in localStorage for real-time sync
 window.addEventListener('storage', function(e) {
   if (e.key === 'messagesUpdated') {
     messages = JSON.parse(localStorage.getItem('messages')) || [];
     displayMessages();
   }
 });
+
+displayMessages();
 
 // Photo upload functionality
 document.getElementById('take-photo').onclick = function () {
@@ -159,6 +153,12 @@ document.querySelectorAll('.gallery-photo').forEach(photo => {
 close.addEventListener('click', closeLightbox);
 prev.addEventListener('click', () => changeImage(-1));
 next.addEventListener('click', () => changeImage(1));
+
+lightbox.addEventListener('click', event => {
+  if (event.target === lightbox || event.target === close) {
+    closeLightbox();
+  }
+});
 
 lightbox.addEventListener('click', event => {
   if (event.target === lightbox || event.target === close) {
