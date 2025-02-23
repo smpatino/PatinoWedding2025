@@ -73,24 +73,24 @@ body {
   display: flex;
   flex-direction: column;
   height: 70vh;
-  padding: 30px;
+  padding: 10px;  /* Reduced padding for better mobile view */
   box-sizing: border-box;
 }
 
 #chat-welcome {
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1em;  /* Reduced font size */
   font-weight: bold;
-  padding: 10px;
+  padding: 5px;  /* Reduced padding */
   background: #007aff;
   color: white;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 #messages {
   flex: 1;
-  max-height: 400px;
+  height: 100%;
   overflow-y: auto;
   display: flex;
   flex-direction: column-reverse;
@@ -142,11 +142,11 @@ body {
 #name-input,
 #message-input {
   flex: 1;
-  padding: 15px;
-  font-size: 1.2em;
+  padding: 10px;  /* Reduced padding */
+  font-size: 1em;
   border: 1px solid #CCC;
   border-radius: 5px;
-  margin-right: 10px;
+  margin-right: 5px;  /* Reduced margin */
 }
 
 #send-button {
@@ -191,7 +191,7 @@ body {
 
 .lightbox .close,
 .lightbox .prev,
-.lightbox .next {
+lightbox .next {
   cursor: pointer;
   color: white;
   font-size: 2em;
@@ -207,12 +207,6 @@ body {
 }
 
 .lightbox .prev {
-  left: 20px;
-}
-
-.lightbox .next {
-  right: 20px;
-}
   left: 20px;
 }
 
