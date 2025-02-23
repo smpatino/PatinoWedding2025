@@ -1,4 +1,4 @@
-
+// script.js
 
 // Countdown functionality
 var countDownDate = new Date("Mar 15, 2025 6:00:00").getTime();
