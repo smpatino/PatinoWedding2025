@@ -1,5 +1,4 @@
 // script.js
-
 // Countdown functionality
 var countDownDate = new Date("Mar 15, 2025 6:00:00").getTime();
 var countdownFunction = setInterval(function() {
@@ -26,15 +25,14 @@ const messagesDiv = document.getElementById('messages');
 const nameInput = document.getElementById('name-input');
 const messageInput = document.getElementById('message-input');
 const sendButton = document.getElementById('send-button');
-// Updated reset button selector to a valid button ID
-const resetButton = document.querySelector('.reset-link button');
+const resetButton = document.getElementById('reset-chat');
 
 function displayMessages() {
   messagesDiv.innerHTML = '';
   messages.forEach(message => {
     const messageDiv = document.createElement('div');
     messageDiv.className = 'message-box';
-    messageDiv.classList.add(message.name === "You" ? "sent" : ""); // Apply sent class if message is sent by "You"
+    messageDiv.classList.add(message.name === "You" ? "sent" : "received"); // Apply sent/received class
     messageDiv.innerHTML = `
       <div class="message-info">
         <span class="message-name">${message.name}</span>
