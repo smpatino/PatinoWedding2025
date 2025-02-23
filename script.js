@@ -24,12 +24,6 @@ const messagesDiv = document.getElementById('messages');
 const nameInput = document.getElementById('name-input');
 const messageInput = document.getElementById('message-input');
 const sendButton = document.getElementById('send-button');
-const resetButton = document.createElement('button');
-
-resetButton.innerHTML = 'Reset Chat';
-resetButton.id = 'reset-chat';
-resetButton.classList.add('reset-chat-button');
-document.body.appendChild(resetButton);
 
 function displayMessages() {
   messagesDiv.innerHTML = '';
