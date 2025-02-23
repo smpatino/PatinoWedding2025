@@ -1,3 +1,4 @@
+
 // Countdown functionality
 var countDownDate = new Date("Mar 15, 2025 6:00:00").getTime();
 var countdownFunction = setInterval(function() {
@@ -31,7 +32,13 @@ function displayMessages() {
   messages.forEach(message => {
     const messageDiv = document.createElement('div');
     messageDiv.className = 'message-box';
-    messageDiv.textContent = `${message.name}: ${message.message}`;
+    messageDiv.innerHTML = `
+      <div class="message-info">
+        <span class="message-name">${message.name}</span>
+        <span class="message-time">${new Date(message.time).toLocaleString()}</span>
+      </div>
+      <div class="message-text">${message.message}</div>
+    `;
     messagesDiv.appendChild(messageDiv);
   });
 }
@@ -40,7 +47,8 @@ function sendMessage() {
   const name = nameInput.value.trim();
   const message = messageInput.value.trim();
   if (name && message) {
-    messages.push({ name, message, time: new Date() });
+    const now = new Date();
+    messages.push({ name, message, time: now });
     localStorage.setItem('messages', JSON.stringify(messages));
     nameInput.value = '';
     messageInput.value = '';
