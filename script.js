@@ -29,7 +29,9 @@ function displayMessages() {
   messages.forEach((message) => {
     const messageDiv = document.createElement('div');
     messageDiv.className = 'message-box';
-    messageDiv.classList.add(message.name.toLowerCase() === nameInput.value.toLowerCase() ? 'sent' : '');
+    if (nameInput.value && message.name.toLowerCase() === nameInput.value.toLowerCase()) {
+      messageDiv.classList.add('sent');
+    }
     messageDiv.innerHTML = `
       <div class="message-info">
         <span class="message-name">${message.name}</span>
@@ -39,7 +41,8 @@ function displayMessages() {
     `;
     messagesDiv.appendChild(messageDiv);
   });
-  messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the bottom
+  // Auto-scroll to the bottom
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
 function sendMessage() {
