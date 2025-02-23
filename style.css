@@ -47,30 +47,19 @@ body {
   border-radius: 5px;
   font-weight: bold;
   margin: 5px;
+  display: inline-block;
 }
 
 .messages-button {
   top: 10px;
   left: -190px; /* Moved 200px further to the left */
+  position: absolute;
 }
 
 .gallery-button {
   top: 50px; /* Position it below the Messages button */
   left: -190px; /* Moved 200px further to the left */
-}
-
-.camera-button {
-  background-color: navy;
-  color: white;
-  text-decoration: none;
-  border-radius: 50%;
-  font-weight: bold;
-  margin: 5px;
-}
-
-.camera-button img {
-  width: 24px; /* Set icon width */
-  height: 24px; /* Set icon height */
+  position: absolute;
 }
 
 .wedding-image {
@@ -82,7 +71,7 @@ body {
 #all-messages-container {
   width: 100%;
   max-width: 800px; /* Increased max-width */
-  background-color: white; /* Removed background color for all-messages-container */
+  background-color: white;
   border-top: 1px solid #CCC;
   margin-top: 30px; /* Added more margin */
   display: flex;
@@ -157,6 +146,7 @@ body {
   width: 50px;
   height: 50px;
   margin-top: 10px;
+  border-radius: 50%; /* Make the icon round */
 }
 
 /* Styles for all-messages.html */
