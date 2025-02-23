@@ -67,9 +67,9 @@ messageInput.addEventListener('keypress', (event) => {
   }
 });
 
-// Event listener to detect changes in localStorage
+// Ensure updates are reflected across all tabs/devices
 window.addEventListener('storage', function (e) {
-  if (e.key === 'messagesUpdated') {
+  if (e.key === 'messages' || e.key === 'messagesUpdated') {
     messages = JSON.parse(localStorage.getItem('messages')) || [];
     displayMessages();
   }
