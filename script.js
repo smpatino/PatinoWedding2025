@@ -1,4 +1,3 @@
-
 // Countdown functionality
 var countDownDate = new Date("Mar 15, 2025 6:00:00").getTime();
 var countdownFunction = setInterval(function() {
@@ -32,6 +31,7 @@ function displayMessages() {
   messages.forEach(message => {
     const messageDiv = document.createElement('div');
     messageDiv.className = 'message-box';
+    messageDiv.classList.add(message.name === "You" ? "sent" : "received"); // Apply sent/received class
     messageDiv.innerHTML = `
       <div class="message-info">
         <span class="message-name">${message.name}</span>
