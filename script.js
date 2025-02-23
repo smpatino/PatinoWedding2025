@@ -9,7 +9,7 @@ var countdownFunction = setInterval(function () {
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+  document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
   if (distance < 0) {
     clearInterval(countdownFunction);
@@ -27,22 +27,21 @@ const sendButton = document.getElementById('send-button');
 function displayMessages() {
   messagesDiv.innerHTML = '';
   messages.forEach((message) => {
-    addMessageToDOM(message);
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message-box';
+    if (message.name.toLowerCase() === nameInput.value.toLowerCase()) {
+      messageDiv.classList.add('sent');
+    }
+    messageDiv.innerHTML = `
+      <div class="message-info">
+        <span class="message-name">${message.name}</span>
+        <span class="message-time">${new Date(message.time).toLocaleString()}</span>
+      </div>
+      <div class="message-text">${message.message}</div>
+    `;
+    messagesDiv.appendChild(messageDiv);
   });
-}
-
-function addMessageToDOM(message) {
-  const messageDiv = document.createElement('div');
-  messageDiv.className = 'message-box';
-  messageDiv.classList.add(message.name.toLowerCase() === "you" ? "sent" : "");
-  messageDiv.innerHTML = `
-    <div class="message-info">
-      <span class="message-name">${message.name}</span>
-      <span class="message-time">${new Date(message.time).toLocaleString()}</span>
-    </div>
-    <div class="message-text">${message.message}</div>
-  `;
-  messagesDiv.appendChild(messageDiv);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the bottom
 }
 
 function sendMessage() {
@@ -50,15 +49,11 @@ function sendMessage() {
   const message = messageInput.value.trim();
   if (name && message) {
     const now = new Date();
-    const newMessage = { name, message, time: now };
-    messages.push(newMessage);
+    messages.push({ name, message, time: now });
     localStorage.setItem('messages', JSON.stringify(messages));
     nameInput.value = '';
     messageInput.value = '';
-    
-    addMessageToDOM(newMessage);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the bottom
-
+    displayMessages();
     // Trigger storage event manually to sync across devices/tabs
     localStorage.setItem('messagesUpdated', Date.now());
   }
