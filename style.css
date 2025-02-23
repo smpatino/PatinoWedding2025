@@ -1,3 +1,5 @@
+/* style.css */
+
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 
 h1 {
@@ -8,7 +10,7 @@ h1 {
   text-align: center;
   padding: 20px;
   margin: 0;
-  color: white;
+  color: white; 
 }
 
 #countdown {
@@ -83,6 +85,64 @@ body {
   flex-direction: column;
 }
 
+#input-bar {
+  display: flex;
+  flex-direction: row;
+}
+
+#name-input,
+#message-input {
+  flex: 1;
+  padding: 15px;
+  font-size: 1.2em;
+  border: 1px solid #CCC;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+#send-button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.view-all {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.view-all a {
+  text-decoration: none;
+  color: navy;
+  font-weight: bold;
+}
+
+.reset-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.reset-link button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reset-link button:hover {
+  background-color: #d32f2f;
+}
+
+.camera-link img {
+  width: 50px;
+  height: 50px;
+  margin-top: 10px;
+}
+
+/* Message box styles for iPhone iMessage look */
 .message-box {
   display: block;
   max-width: 70%;
@@ -119,29 +179,7 @@ body {
   margin-top: 5px;
 }
 
-#input-bar {
-  display: flex;
-  flex-direction: row;
-}
-
-#name-input,
-#message-input {
-  flex: 1;
-  padding: 15px;
-  font-size: 1.2em;
-  border: 1px solid #CCC;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
-#send-button {
-  background-color: transparent;
-  border: none;
-  font-size: 1.5em;
-  cursor: pointer;
-}
-
-.gallery {
+#gallery {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -193,6 +231,6 @@ body {
   left: 20px;
 }
 
-.lightbox . next  {
+.lightbox .next {
   right: 20px;
 }
