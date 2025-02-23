@@ -37,26 +37,22 @@ body {
   position: relative;
 }
 
-.messages-button,
-.gallery-button,
-.home-button {
+#top-content a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
   padding: 10px 20px;
   background-color: navy;
   color: white;
-  text-decoration: none;
   border-radius: 5px;
   font-weight: bold;
   margin: 5px;
 }
 
-.messages-button {
-  top: 10px;
-  left: -190px;
-}
-
-.gallery-button {
-  top: 50px;
-  left: -190px;
+.camera-link img {
+  height: 24px;
+  width: 24px;
+  margin-left: 10px;
 }
 
 .wedding-image {
@@ -73,15 +69,15 @@ body {
   display: flex;
   flex-direction: column;
   height: 70vh;
-  padding: 10px;  /* Reduced padding for better mobile view */
+  padding: 10px;
   box-sizing: border-box;
 }
 
 #chat-welcome {
   text-align: center;
-  font-size: 1em;  /* Reduced font size */
+  font-size: 1em;
   font-weight: bold;
-  padding: 5px;  /* Reduced padding */
+  padding: 5px;
   background: #007aff;
   color: white;
   border-radius: 10px;
@@ -142,11 +138,11 @@ body {
 #name-input,
 #message-input {
   flex: 1;
-  padding: 10px;  /* Reduced padding */
+  padding: 10px;
   font-size: 1em;
   border: 1px solid #CCC;
   border-radius: 5px;
-  margin-right: 5px;  /* Reduced margin */
+  margin-right: 5px;
 }
 
 #send-button {
@@ -191,7 +187,7 @@ body {
 
 .lightbox .close,
 .lightbox .prev,
-lightbox .next {
+.lightbox .next {
   cursor: pointer;
   color: white;
   font-size: 2em;
