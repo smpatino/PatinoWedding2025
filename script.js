@@ -27,19 +27,22 @@ const sendButton = document.getElementById('send-button');
 function displayMessages() {
   messagesDiv.innerHTML = '';
   messages.forEach((message) => {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'message-box';
-    messageDiv.classList.add(message.name.toLowerCase() === "you" ? "sent" : "");
-    messageDiv.innerHTML = `
-      <div class="message-info">
-        <span class="message-name">${message.name}</span>
-        <span class="message-time">${new Date(message.time).toLocaleString()}</span>
-      </div>
-      <div class="message-text">${message.message}</div>
-    `;
-    messagesDiv.appendChild(messageDiv);
+    addMessageToDOM(message);
   });
-  messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the bottom
+}
+
+function addMessageToDOM(message) {
+  const messageDiv = document.createElement('div');
+  messageDiv.className = 'message-box';
+  messageDiv.classList.add(message.name.toLowerCase() === "you" ? "sent" : "");
+  messageDiv.innerHTML = `
+    <div class="message-info">
+      <span class="message-name">${message.name}</span>
+      <span class="message-time">${new Date(message.time).toLocaleString()}</span>
+    </div>
+    <div class="message-text">${message.message}</div>
+  `;
+  messagesDiv.appendChild(messageDiv);
 }
 
 function sendMessage() {
@@ -47,11 +50,15 @@ function sendMessage() {
   const message = messageInput.value.trim();
   if (name && message) {
     const now = new Date();
-    messages.push({ name, message, time: now });
+    const newMessage = { name, message, time: now };
+    messages.push(newMessage);
     localStorage.setItem('messages', JSON.stringify(messages));
     nameInput.value = '';
     messageInput.value = '';
-    displayMessages();
+    
+    addMessageToDOM(newMessage);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the bottom
+
     // Trigger storage event manually to sync across devices/tabs
     localStorage.setItem('messagesUpdated', Date.now());
   }
