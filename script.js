@@ -29,9 +29,7 @@ function displayMessages() {
   messages.forEach((message) => {
     const messageDiv = document.createElement('div');
     messageDiv.className = 'message-box';
-    if (message.name.toLowerCase() === nameInput.value.toLowerCase()) {
-      messageDiv.classList.add('sent');
-    }
+    messageDiv.classList.add(message.name.toLowerCase() === nameInput.value.toLowerCase() ? 'sent' : '');
     messageDiv.innerHTML = `
       <div class="message-info">
         <span class="message-name">${message.name}</span>
@@ -51,7 +49,6 @@ function sendMessage() {
     const now = new Date();
     messages.push({ name, message, time: now });
     localStorage.setItem('messages', JSON.stringify(messages));
-    nameInput.value = '';
     messageInput.value = '';
     displayMessages();
     // Trigger storage event manually to sync across devices/tabs
