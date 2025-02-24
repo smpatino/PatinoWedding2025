@@ -1,32 +1,12 @@
-// Countdown functionality
-var countDownDate = new Date("Mar 15, 2025 6:00:00").getTime();
-var countdownFunction = setInterval(function () {
-  var now = new Date().getTime();
-  var distance = countDownDate - now;
+document.addEventListener('DOMContentLoaded', () => {
+  const socket = io();
 
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  const messagesDiv = document.getElementById('messages');
+  const nameInput = document.getElementById('name-input');
+  const messageInput = document.getElementById('message-input');
+  const sendButton = document.getElementById('send-button');
 
-  document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-  if (distance < 0) {
-    clearInterval(countdownFunction);
-    document.getElementById("countdown").innerHTML = "EXPIRED";
-  }
-}, 1000);
-
-// Chat functionality
-var messages = JSON.parse(localStorage.getItem('messages')) || [];
-const messagesDiv = document.getElementById('messages');
-const nameInput = document.getElementById('name-input');
-const messageInput = document.getElementById('message-input');
-const sendButton = document.getElementById('send-button');
-
-function displayMessages() {
-  messagesDiv.innerHTML = '';
-  messages.forEach((message) => {
+  function displayMessage(message) {
     const messageDiv = document.createElement('div');
     messageDiv.className = 'message-box';
     if (message.name.toLowerCase() === nameInput.value.trim().toLowerCase()) {
@@ -40,42 +20,40 @@ function displayMessages() {
       <div class="message-text">${message.message}</div>
     `;
     messagesDiv.appendChild(messageDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
+
+  sendButton.addEventListener('click', () => {
+    const name = nameInput.value.trim();
+    const message = messageInput.value.trim();
+    if (name && message) {
+      const now = new Date();
+      socket.emit('new message', { name, message, time: now });
+      messageInput.value = '';
+    }
   });
-  // Auto-scroll to the bottom
-  messagesDiv.scrollTop = messagesDiv.scrollHeight;
-  console.log("Messages displayed: ", messages);
-}
 
-function sendMessage() {
-  const name = nameInput.value.trim();
-  const message = messageInput.value.trim();
-  if (name && message) {
-    const now = new Date();
-    messages.push({ name, message, time: now });
-    localStorage.setItem('messages', JSON.stringify(messages));
-    messageInput.value = '';
-    displayMessages();
-    // Trigger storage event manually to sync across devices/tabs
-    localStorage.setItem('messagesUpdated', Date.now());
-    console.log("Message sent: ", { name, message, time: now });
-  }
-}
+  messageInput.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      sendButton.click();
+    }
+  });
 
-sendButton.addEventListener('click', sendMessage);
-messageInput.addEventListener('keypress', (event) => {
-  if (event.key === 'Enter') {
-    event.preventDefault();
-    sendMessage();
-  }
-});
+  socket.on('new message', (message) => {
+    displayMessage(message);
+  });
 
-// Ensure updates are reflected across all tabs/devices
-window.addEventListener('storage', function (e) {
-  if (e.key === 'messages' || e.key === 'messagesUpdated') {
-    messages = JSON.parse(localStorage.getItem('messages')) || [];
-    displayMessages();
-    console.log("Messages updated from storage event: ", messages);
-  }
+  // Ensure updates are reflected across all tabs/devices
+  window.addEventListener('storage', function (e) {
+    if (e.key === 'messages' || e.key === 'messagesUpdated') {
+      messages = JSON.parse(localStorage.getItem('messages')) || [];
+      displayMessages();
+    }
+  });
+
+  // Initial call to display messages
+  document.addEventListener('DOMContentLoaded', displayMessages);
 });
 
 // Initial call to display messages
